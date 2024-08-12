@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, render
 from myapp.forms import ContactForm
 from myapp.models import Post
@@ -93,7 +94,10 @@ def contact(request):
         if form.is_valid():
             form.save()
             success_message = 'Thank you for contacting us. We will get back to you soon.'
+            messages.success(request, success_message)
             form = ContactForm()  # Reset the form after saving
+        else:
+            messages.error(request, 'There was an error in your submission.')
     else:
         form = ContactForm()
     return render(request, 'contact.html', {'form': form, 'success_message': success_message})
