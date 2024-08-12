@@ -150,7 +150,7 @@
             <div class="col-md-4 my-2 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <p class="text-bg-success text-center">{{ post.postname }}</p>
-                    <img style="height: 350px;object-fit: cover;width: 100%;" src="{{media_url}}{{post.image}}" alt="Card image cap">
+                    <img class="post-img" style="height: 350px;object-fit: cover;width: 100%;" src="{{media_url}}{{post.image}}" alt="Card image cap">
                     <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark">
                         <div class="card-body text-center">
                             <button style="background-color: #88D66C; border:none; width: 200px;" type="button" class="btn btn-custom justify-content-center mt-4 mb-4">Lihat Postingan</button>
