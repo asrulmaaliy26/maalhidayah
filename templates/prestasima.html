@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section style="position: relative; text-align: center;">
+    <img width="100%" style="height: 500px;object-fit: cover;filter: brightness(50%);" src="{% static 'assets/images/Header.jpg' %}" alt="">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em; color: white; font-weight: bold;">
+      PRESTASI
+    </div>
+  </section>
+  <!-- section -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+          <div class="row pt-4">
+            {% if posts_asia %}
+            <h4>TINGKAT ASIA<br><br></h4>
+            {% for post in posts_asia %}
+                 <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark"><p>{{post.postname}}</p></a>
+              {% endfor %}
+              {% else %}
+              <p><br>.</p>
+              {% endif %}
+            </div>
+            <div class="row pt-4">
+              {% if posts_nasional %}
+              <h4>TINGKAT NASIONAL<br><br></h4>
+              {% for post in posts_nasional %}
+                 <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark"><p>{{post.postname}}</p></a>
+              {% endfor %}
+              {% else %}
+              <p><br></p>
+              {% endif %}
+            </div>
+            <div class="row pt-4">
+              {% if posts_provinsi %}
+              <h4>TINGKAT PROVINSI<br><br></h4>
+              {% for post in posts_provinsi %}
+                 <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark"><p>{{post.postname}}</p></a>
+              {% endfor %}
+              {% else %}
+              <p><br></p>
+              {% endif %}
+            </div>
+            <div class="row pt-4">
+              {% if posts_kabupaten %}
+              <h4>TINGKAT KABUPATEN<br><br></h4>
+              {% for post in posts_kabupaten %}
+                 <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark"><p>{{post.postname}}</p></a>
+              {% endfor %}
+              {% else %}
+              <p><br></p>
+              {% endif %}
+            </div>
+      </div>
+      <div class="col-sm-4 pr">
+          <div class="row pt-4">
+              <h2>Prestasi Terbaru</h2>
+          </div>
+          <div class="row pb-5">
+            {% if recent_posts %}
+            {% for post in recent_posts %}
+            <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark">
+              <div class="card mt-5 pt-2 bg-light" style="width: 18rem;">
+                  <img class="card-img-top" src="{{media_url}}{{post.image}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{post.postname}}</h5>
+                    <p class="card-text">{{post.content|truncatewords:5|safe}}</p>
+                  </div>
+              </div>
+            </a>
+              {% endfor %}
+              {% else %}
+              <p><br></p>
+              {% endif %}
+          </div>
+      </div>
+    </div>
+  </div>
+<!-- akhir section -->
+
+
+{% endblock content %}

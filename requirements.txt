@@ -1,0 +1,6 @@
+Pillow
+django
+sqlparse
+tzdata
+asgiref
+django-ckeditor

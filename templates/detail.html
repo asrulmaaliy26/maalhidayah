@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block extra_style %}
+
+<style>
+  a {
+    color: #000;
+  }
+</style>
+
+{% endblock extra_style %}
+
+{% load static %}
+{% block content %}
+
+<section style="position: relative; text-align: center;">
+    <img width="100%" style="height: 500px;object-fit: cover;filter: brightness(50%);" src="{% static 'assets/images/Header.jpg' %}" alt="">
+    
+  </section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <section>
+        <div
+          class="container pt-5 pb-5 j1"
+          style="max-width: 800px; margin: auto"
+        >
+          <h4 class="text-center pt-5">{{ post.postname }}</h4>
+          <p class="text-center text-muted mb-5"><em>{{post.time}}</em></p>
+          <img
+          class="mb-5"
+          style="width: 80%; border-radius: 10px; display: block; margin: auto"
+          src="{{media_url}}{{post.image}}"
+          alt="{{ post.postname }}"
+        />
+          <p>{{ post.content|safe}}</p>
+          <p class="text-center text-muted mt-5">
+            <em>{{ post.time}} | By: {% if post.author %} {{ post.author }} {% else %} - {% endif %}</em>
+          </p>
+        </div>
+      </section>
+    </div>
+    <div class="col-sm-3 pr">
+      <div class="row pt-4">
+        <h2>Berita Terbaru</h2>
+      </div>
+      <div class="row pt-4">
+        {% if recent_posts %} {% for post in recent_posts %}
+        <div class="card pt-3 mb-5 bg-light" style="width: 18rem">
+          <a href="{% url 'detail' post.id %}" class="text-decoration-none text-dark">
+            <img
+            class="card-img-top"
+            src="{{media_url}}{{post.image}}"
+            alt="{{ post.postname }}"
+          />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ post.postname }}</h5>
+            <p class="card-text">
+              {{ post.content|truncatewords:5|safe}}
+            </p>
+          </div>
+        </div>
+        
+        {% endfor %} {% else %}
+        <p>No recent posts available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+{% endblock content %}
