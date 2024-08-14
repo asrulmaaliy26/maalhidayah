@@ -1,24 +1,18 @@
-from django.urls import path
 from django.views.generic.base import RedirectView
+from django.urls import path
 from .views import (
-    detail,
-    index,
-    visimisi,
-    strukturorganisasi,
-    prestasima,
-    berita,
-    fasilitas,
-    contact,
+    IndexView, VisiMisiView, StrukturOrganisasiView, PrestasiMaView, 
+    BeritaView, FasilitasView, ContactView, PostDetailView
 )
 
 urlpatterns = [
-    path('', index, name="index"),
-    path('visimisi', visimisi, name="visimisi"),
-    path('strukturorganisasi', strukturorganisasi, name="strukturorganisasi"),
-    path('prestasima', prestasima, name="prestasima"),
-    path('berita', berita, name="berita"),
-    path('detail/<int:id>', detail, name="detail"),
-    path('fasilitas', fasilitas, name="fasilitas"),
-    path('contact', contact, name="contact"),
+    path('', IndexView.as_view(), name='index'),
+    path('visimisi/', VisiMisiView.as_view(), name='visimisi'),
+    path('strukturorganisasi/', StrukturOrganisasiView.as_view(), name='strukturorganisasi'),
+    path('prestasima/', PrestasiMaView.as_view(), name='prestasima'),
+    path('berita/', BeritaView.as_view(), name='berita'),
+    path('fasilitas/', FasilitasView.as_view(), name='fasilitas'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='detail'),
     path('ppdb', RedirectView.as_view(url='https://ppdb.almannan.id/', permanent=False), name='ppdb'),
 ]
